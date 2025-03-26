@@ -21,7 +21,7 @@
 
             try
             {
-                if (!uint.TryParse(value, out uint parsedValue) || parsedValue < 1)
+                if (!uint.TryParse(value, out uint parsedValue) || !(parsedValue > 0))
                 {
                     FatalError($"{key.ToUpper()} must be an unsigned integer greater than 0");
                 }
@@ -44,6 +44,10 @@
                         config.t1 = parsedValue;
                         break;
                     case "t2":
+                        if (parsedValue < config.t1)
+                        {
+                            FatalError("T2 must be greater than or equal to T1");
+                        }
                         config.t2 = parsedValue;
                         break;
                     default:

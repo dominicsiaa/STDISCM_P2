@@ -49,6 +49,7 @@
         while (tanksRemaining >= 1 && healersRemaining >= 1 && dpsRemaining >= 3)
         {
             Party party = new Party(
+                (uint)parties.Count + 1,
                 $"Tank {tankCounter++}",
                 $"Healer {healerCounter++}",
                 $"DPS {dpsCounter++}",

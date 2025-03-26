@@ -55,10 +55,10 @@ class Dungeon
             return;
         }
 
-        Console.WriteLine($"Starting Dungeon for {CurrentParty}");
+        Console.WriteLine($"Starting Dungeon {_id} for {CurrentParty}");
         uint clearTime = (uint)new Random().Next((int)MinClearTime, (int)MaxClearTime + 1);
         Thread.Sleep((int)clearTime * 1000);
-        Console.WriteLine($"Dungeon Completed for {CurrentParty} in {clearTime} seconds.");
+        Console.WriteLine($"Dungeon {_id} Completed for {CurrentParty} in {clearTime} seconds.");
 
         PartiesServed++;
         TotalTimeServed += clearTime;
