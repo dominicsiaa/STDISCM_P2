@@ -21,32 +21,57 @@
 
             try
             {
-                if (!uint.TryParse(value, out uint parsedValue) || !(parsedValue > 0))
+                if (!uint.TryParse(value, out uint parsedValue))
                 {
-                    FatalError($"{key.ToUpper()} must be an unsigned integer greater than 0");
+                    FatalError($"{key.ToUpper()} must be an unsigned integer");
                 }
 
                 switch (key.ToLower())
                 {
                     case "n":
+                        if (parsedValue < 1 || parsedValue > 1000)
+                        {
+                            FatalError("N must be between 1 and 1000");
+                        }
                         config.n = parsedValue;
                         break;
                     case "t":
+                        if (parsedValue > 5000000)
+                        {
+                            FatalError("T must be less than 5000000");
+                        }
                         config.t = parsedValue;
                         break;
                     case "h":
+                        if (parsedValue > 5000000)
+                        {
+                            FatalError("H must be less than 5000000");
+                        }
                         config.h = parsedValue;
                         break;
                     case "d":
+                        if (parsedValue > 5000000)
+                        {
+                            FatalError("D must be less than 5000000");
+                        }
                         config.d = parsedValue;
                         break;
                     case "t1":
+                        if (parsedValue > 15 || parsedValue < 1)
+                        {
+                            FatalError("T1 must be between 1 and 15");
+                        }
                         config.t1 = parsedValue;
                         break;
                     case "t2":
                         if (parsedValue < config.t1)
                         {
                             FatalError("T2 must be greater than or equal to T1");
+                        }
+
+                        if (parsedValue > 15 || parsedValue < 1)
+                        {
+                            FatalError("T2 must be between 1 and 15");
                         }
                         config.t2 = parsedValue;
                         break;
